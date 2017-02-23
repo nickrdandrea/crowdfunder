@@ -9,10 +9,8 @@ class ProjectsController < ApplicationController
   def show
     @project = Project.find(params[:id])
     @update = Update.new
-    @updates = Update.last(5)
-    @pledge = Pledge.find(params[:id])
+    @pledge = Pledge.new
     @comment = Comment.new
-    @comments = Comment.last(10)
   end
 
   def new

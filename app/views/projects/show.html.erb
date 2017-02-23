@@ -9,7 +9,7 @@
   <%= image_tag @project.image %>
 <% end %>
 
-<% if @pledge.user_id == current_user.id && @project.user_id != current_user.id %>
+<% if @project.pledges.pluck(:user_id).include?(current_user.id) && @project.user_id != current_user.id %>
   <h3>Sweet you already donated!</h3>
 <% elsif @project.user_id == current_user.id %>
   <h3>Sorry owners can't donate :(</h3>
@@ -29,15 +29,15 @@
   <% end %>
 <% end %>
 
-<% if !@updates.empty? %>
+<% if !@project.updates.empty? %>
   <h2>Updates</h2>
-  <% @updates.each do |update| %>
+  <% @project.updates.limit(10).each do |update| %>
     <p><%= update.title %></p>
     <p><%= update.description %></p>
   <% end %>
 <% end %>
 
-<% if @pledge.user_id == current_user.id && @project.user_id != current_user.id %>
+<% if @project.pledges.pluck(:user_id).include?(current_user.id) && @project.user_id != current_user.id %>
   <h2>Add a comment!</h2>
   <%= form_for @comment do |f| %>
     <p><%= f.label :description %></p>
@@ -49,10 +49,10 @@
   <% end %>
 <% end %>
 
-<% if !@comments.empty? %>
+<% if !@project.comments.empty? %>
   <h2>Comments</h2>
-  <% @comments.each do |comment| %>
-    <p><%= comment.user_first_name %> commented:</p>
+  <% @project.comments.limit(5).each do |comment| %>
+    <p><%= comment.user.first_name %></p>
     <p><%= comment.description %></p>
   <% end %>
 <% end %>
