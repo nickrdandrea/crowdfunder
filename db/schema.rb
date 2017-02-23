@@ -10,13 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-# I think my(Nick) machine changed the version to this. I'm resolving the conflict by commenting out mine and
-# leaving the version I think everyone else is wrong. If catastrophic failure occurs this might need to be switched.
-#ActiveRecord::Schema.define(version: 20170223062105) do
-=======
-ActiveRecord::Schema.define(version: 20170223022003) do
->>>>>>> 20a403c5f28ed00878eeda30f6c4727a77dfd322
+ActiveRecord::Schema.define(version: 20170223062105) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
