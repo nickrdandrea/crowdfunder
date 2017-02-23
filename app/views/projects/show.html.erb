@@ -21,7 +21,7 @@
   <% end %>
 <% end %>
 
-<h2>Updates</h2> 
+<h2>Updates</h2>
 <% @updates.each do |update| %>
   <p><%= update.title %></p>
   <p><%= update.description %></p>
@@ -31,10 +31,11 @@
 <% @project.rewards.each do |reward| %>
   <p><%= number_to_currency(reward.dollar_amount) %></p>
   <p><%= reward.description %></p>
-
-  <%= form_for [reward, reward.pledges.new] do |f| %>
-    <%= f.number_field :dollar_amount, value: reward.dollar_amount, step: 0.01 %>
-    <%= f.submit "Pledge" %>
+  <% if @project.user_id != current_user.id %>
+    <%= form_for [reward, reward.pledges.new] do |f| %>
+      <%= f.number_field :dollar_amount, value: reward.dollar_amount, step: 0.01 %>
+      <%= f.submit "Pledge" %>
+    <% end %>
   <% end %>
 
 <% end %>
