@@ -10,7 +10,7 @@ class ProjectsController < ApplicationController
     @project = Project.find(params[:id])
     @update = Update.new
     @updates = Update.last(5)
-    @pledge = Pledge.find(params[:id]) 
+    @pledge = Pledge.find(params[:id])
   end
 
   def new
@@ -31,6 +31,6 @@ class ProjectsController < ApplicationController
 
   private
   def project_params
-    params.require(:project).permit(:title, :description, :goal, :start_date, :end_date, :image, rewards_attributes: [:dollar_amount, :description])
+    params.require(:project).permit(:title, :description, :goal, :start_date, :end_date, :image, rewards_attributes: [:dollar_amount, :description, :limit])
   end
 end
