@@ -5,7 +5,14 @@ class Pledge < ApplicationRecord
 
   validate :enough_pledged
   validates_presence_of :dollar_amount, :description
-  validates_numericality_of :dollar_amount, :greater_than => 0
+  validates :goal, numericality: { greater_than: 1 }
+
+  # validate :dollar_amount_must_be_higher_than_zero
+  # def dollar_amount_must_be_higher_than_zero
+  #   if self.dollar_amount < 1
+  #     errors.add(:dollar_amount, "must be higher than zero")
+  #   end
+  # end
 
   def enough_pledged
     unless self.dollar_amount >= reward.dollar_amount
