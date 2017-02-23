@@ -9,7 +9,7 @@ class ProjectsController < ApplicationController
   def show
     @project = Project.find(params[:id])
     @update = Update.new
-    @updates = Update.all
+    @updates = Update.last(5)
   end
 
   def new
