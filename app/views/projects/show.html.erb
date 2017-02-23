@@ -10,11 +10,7 @@
 <% end %>
 
 <% if @project.user_id == current_user.id %>
-  <h2>Updates</h2>
-  <% @updates.each do |update| %>
-    <p><%= update.title %></p>
-    <p><%= update.description %></p>
-  <% end %>
+  <h2>New Update</h2>
   <%= form_for @update do |f| %>
     <p><%= f.label :title %></p>
     <p><%= f.text_field :title %></p>
@@ -23,6 +19,12 @@
     <%= f.hidden_field :project_id, value: @project.id %>
     <p><%= f.submit "Update" %></p>
   <% end %>
+<% end %>
+
+<h2>Updates</h2>
+<% @updates.each do |update| %>
+  <p><%= update.title %></p>
+  <p><%= update.description %></p>
 <% end %>
 
 <h2>Rewards</h2>
