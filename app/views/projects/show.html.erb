@@ -64,7 +64,7 @@
   <% if @project.user_id != current_user.id %>
     <%= form_for [reward, reward.pledges.new] do |f| %>
       <!--I don't think we need to show this. The user can't change the amount they're pledging when getting a reward, they have to pledge the reward amount. -->
-      <% f.number_field :dollar_amount, value: reward.dollar_amount, step: 0.01 %>
+      <%= f.number_field :dollar_amount, value: reward.dollar_amount, step: 0.01 %>
 
       <p>Remaining: <%= reward.limit - Pledge.where(reward_id: reward.id).size%></p>
       <% if Pledge.where(reward_id: reward.id).size < reward.limit %>
