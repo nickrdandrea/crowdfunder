@@ -1,3 +1,6 @@
+
+<h1>Crowdfunder hosts <%= @projects.length %> projects and has helped raise $<%= @successfulpledges %> for <%= @successfulprojects %> successful projects!</h1>
+
 <% @projects.each do |project| %>
   <article class="project">
     <%= link_to project, class: 'project-link' do %>

@@ -4,6 +4,14 @@ class ProjectsController < ApplicationController
   def index
     @projects = Project.all
     @projects = @projects.order(:end_date)
+    @successfulprojects = 0
+    @successfulpledges = 0
+    @projects.each do |project|
+      if Reward.joins(:pledges).where(project_id: project.id).sum(:dollar_amount) >= project.goal
+        @successfulprojects += 1
+        @successfulpledges += Reward.joins(:pledges).where(project_id: project.id).sum(:dollar_amount)
+      end
+    end
   end
 
   def show
