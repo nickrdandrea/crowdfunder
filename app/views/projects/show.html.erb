@@ -29,10 +29,32 @@
   <% end %>
 <% end %>
 
-<h2>Updates</h2>
-<% @updates.each do |update| %>
-  <p><%= update.title %></p>
-  <p><%= update.description %></p>
+<% if !@updates.empty? %>
+  <h2>Updates</h2>
+  <% @updates.each do |update| %>
+    <p><%= update.title %></p>
+    <p><%= update.description %></p>
+  <% end %>
+<% end %>
+
+<% if @pledge.user_id == current_user.id && @project.user_id != current_user.id %>
+  <h2>Add a comment!</h2>
+  <%= form_for @comment do |f| %>
+    <p><%= f.label :description %></p>
+    <p><%= f.text_area :description %></p>
+    <%= f.hidden_field :project_id, value: @project.id %>
+    <%= f.hidden_field :user_id, value: current_user.id %>
+    <%= f.hidden_field :user_first_name, value: current_user.first_name %>
+    <p><%= f.submit "Comment!" %></p>
+  <% end %>
+<% end %>
+
+<% if !@comments.empty? %>
+  <h2>Comments</h2>
+  <% @comments.each do |comment| %>
+    <p><%= comment.user_first_name %> commented:</p>
+    <p><%= comment.description %></p>
+  <% end %>
 <% end %>
 
 <h2>Rewards</h2>
