@@ -9,6 +9,14 @@
   <%= image_tag @project.image %>
 <% end %>
 
+<% if @pledge.user_id == current_user.id && @project.user_id != current_user.id %>
+  <h3>Sweet you already donated!</h3>
+<% elsif @project.user_id == current_user.id %>
+  <h3>Sorry owners can't donate :(</h3>
+<% else %>
+  <h3>It would be awesome if you could donate!</h3>
+<% end %>
+
 <% if @project.user_id == current_user.id %>
   <h2>New Update</h2>
   <%= form_for @update do |f| %>

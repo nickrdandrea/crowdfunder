@@ -10,6 +10,7 @@ class ProjectsController < ApplicationController
     @project = Project.find(params[:id])
     @update = Update.new
     @updates = Update.last(5)
+    @pledge = Pledge.find(params[:id])
   end
 
   def new
