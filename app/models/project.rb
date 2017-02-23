@@ -7,4 +7,5 @@ class Project < ActiveRecord::Base
   has_many :backers, through: :rewards
   accepts_nested_attributes_for :rewards
   validates_presence_of :title, :description, :goal, :start_date, :end_date
+  validates_numericality_of :goal, :greater_than => 0, :only_integer => true
 end
