@@ -1,5 +1,6 @@
 class Project < ActiveRecord::Base
   belongs_to :user
+  has_many :updates
   has_many :rewards
   has_many :pledges, through: :rewards
   has_many :backers, through: :rewards
