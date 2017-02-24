@@ -72,6 +72,17 @@
       <% else %>
         <p>This Reward has reached its limit!</p>
       <% end %>
+
+      <!-- I don't think the way we have pledges set up allows errors but whatever
+                    If this breaks something, remove it. I don't think we actually use it. -->
+      <% if @pledge.errors.any? %>
+      <ul>
+        <% @pledge.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+      <% end %>
+
     <% end %>
   <% end %>
 
