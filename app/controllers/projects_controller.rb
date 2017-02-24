@@ -18,7 +18,10 @@ class ProjectsController < ApplicationController
     @project = Project.find(params[:id])
     @update = Update.new
     @updates = Update.last(5)
-    @pledge = Pledge.find(params[:id])
+
+    if Pledge.exists?(:id => params[:id])
+      @pledge = Pledge.find(params[:id])
+    end
     @comment = Comment.new
     @comments = Comment.last(10)
   end
