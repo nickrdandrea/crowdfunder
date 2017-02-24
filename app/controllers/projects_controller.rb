@@ -8,6 +8,7 @@ class ProjectsController < ApplicationController
 
   def show
     @project = Project.find(params[:id])
+    @total_pledge = @project.pledges.sum(:dollar_amount)
   end
 
   def new
