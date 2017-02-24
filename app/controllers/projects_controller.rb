@@ -18,6 +18,11 @@ class ProjectsController < ApplicationController
     @project = Project.find(params[:id])
     @update = Update.new
     @pledge = Pledge.new
+    # @updates = Update.last(5)
+    #
+    # if Pledge.exists?(:id => params[:id])
+    #   @pledge = Pledge.find(params[:id])
+    # end
     @comment = Comment.new
   end
 
