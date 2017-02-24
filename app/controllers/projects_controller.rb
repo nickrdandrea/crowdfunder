@@ -16,6 +16,7 @@ class ProjectsController < ApplicationController
 
   def show
     @project = Project.find(params[:id])
+# <<<<<<< HEAD
     @update = Update.new
     @pledge = Pledge.new
     # @updates = Update.last(5)
@@ -24,6 +25,9 @@ class ProjectsController < ApplicationController
     #   @pledge = Pledge.find(params[:id])
     # end
     @comment = Comment.new
+# =======
+    @total_pledge = @project.pledges.sum(:dollar_amount)
+# >>>>>>> moneyPledged
   end
 
   def new
